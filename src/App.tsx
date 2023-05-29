@@ -4,6 +4,7 @@ import MainComponents from './Main-Component/Main-Components';
 import Dasboard from './Components/Dasboard/Dasboard';
 import DoctorSection from './Components/Doctor/DoctorSection';
 import Patient from './Components/Patient/Patient';
+import Aboutus from './Components/Aboutus/Aboutus';
 
 
 
@@ -26,6 +27,10 @@ const  App = () => {
           path:'/Patient',
           element:<Patient/>
         },
+        {
+          path:'/About',
+          element:<Aboutus/>
+        }
       ]
     },
   ])

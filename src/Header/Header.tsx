@@ -4,17 +4,18 @@ import { TabButton } from "../Common-Component/Button";
 export type Tab = {
   id: number;
   title: string;
+  link: string;
 };
 
 const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   const tabs: Tab[] = [
-    { id: 1, title: "HOME" },
-    { id: 2, title: "DASHBOARD" },
-    { id: 3, title: "DOCTOR SECTION" },
-    { id: 4, title: "PATIENT SECTION" },
-    { id: 5, title: "ABOUT US" },
+    { id: 1, title: "HOME" , link:'/'},
+    { id: 2, title: "DASHBOARD", link:'http://localhost:3000/Dashboard' },
+    { id: 3, title: "DOCTOR SECTION", link:'http://localhost:3000/Doctor' },
+    { id: 4, title: "PATIENT SECTION", link:'http://localhost:3000/Patient' },
+    { id: 5, title: "ABOUT US", link:'/About' },
   ];
 
   const handleTabClick = (tabId: number) => {
@@ -34,6 +35,7 @@ const Header: React.FC = () => {
           {tabs.map((tab) => (
             <TabButton
               key={tab.id}
+              link={tab.link}
               tab={tab}
               isActive={tab.id === activeTab}
               onClick={handleTabClick}
