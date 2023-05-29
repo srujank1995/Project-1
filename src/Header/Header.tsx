@@ -10,10 +10,10 @@ const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
 
   const tabs: Tab[] = [
-    { id: 1, title: "DASHBOARD" },
-    { id: 2, title: "DOCTOR SECTION" },
-    { id: 3, title: "PATIENT SECTION" },
-    { id: 4, title: "HOME" },
+    { id: 1, title: "HOME" },
+    { id: 2, title: "DASHBOARD" },
+    { id: 3, title: "DOCTOR SECTION" },
+    { id: 4, title: "PATIENT SECTION" },
     { id: 5, title: "ABOUT US" },
   ];
 
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-gray-50">
+    <header className=" bg-cyan-800 bg-opacity-30 bg-gradient-to-tr">
       <nav className="flex justify-between items-center p-3 m-3">
         <div className="text-zinc-800 font-mono font-bold text-3xl ">
           Medical Care<span><img
