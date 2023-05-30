@@ -5,6 +5,7 @@ import Dasboard from "./Components/Dasboard/Dasboard";
 import DoctorSection from "./Components/Doctor/DoctorSection";
 import Patient from "./Components/Patient/Patient";
 import Aboutus from "./Components/Aboutus/Aboutus";
+import Home from "./Components/Home/Home";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -12,6 +13,10 @@ const App = () => {
       path: "/",
       element: <MainComponents />,
       children: [
+        {
+          path: "/Home",
+          element: <Home/>,
+        },
         {
           path: "/Dashboard",
           element: <Dasboard />,
