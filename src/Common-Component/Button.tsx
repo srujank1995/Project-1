@@ -21,13 +21,14 @@ export const TabButton: React.FC<TabButtonProps> = ({
 
   return (
     <div>
-      <a href={tab.link}></a>
-    <button
-      className={`px-3 py-2 rounded-md ${activeStyles}`}
-      onClick={handleClick}
-    >
-      {tab.title}
-    </button>
+      <a href={tab.link}>
+      <button
+        className={`px-3 py-2 rounded-md ${activeStyles}`}
+      >
+        {tab.title}
+      </button>
+      </a>
+      
     </div>
   );
 };
