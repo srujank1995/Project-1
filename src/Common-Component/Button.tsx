@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { Tab } from "../Header/Header";
-import path from "path";
 
 type TabButtonProps = {
   tab: Tab;

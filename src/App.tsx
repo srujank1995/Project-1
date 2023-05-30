@@ -1,41 +1,9 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import MainComponents from "./Main-Component/Main-Components";
-import Dasboard from "./Components/Dasboard/Dasboard";
-import DoctorSection from "./Components/Doctor/DoctorSection";
-import Patient from "./Components/Patient/Patient";
-import Aboutus from "./Components/Aboutus/Aboutus";
-import Home from "./Components/Home/Home";
+import router from "./Redux-Router/ReduxRouter";
+
 
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainComponents />,
-      children: [
-        {
-          path: "/Home",
-          element: <Home/>,
-        },
-        {
-          path: "/Dashboard",
-          element: <Dasboard />,
-        },
-        {
-          path: "/Doctor",
-          element: <DoctorSection />,
-        },
-        {
-          path: "/Patient",
-          element: <Patient />,
-        },
-        {
-          path: "/About",
-          element: <Aboutus />,
-        },
-      ],
-    },
-  ]);
   return (
     <div className="App">
       <RouterProvider router={router} />
