@@ -1,36 +1,24 @@
-import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import router from "./Redux-Router/ReduxRouter";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { LoginUser } from "./mainStore/UserStore/User.action";
+import { RouterProvider } from "react-router-dom";
 
 
 const App = () => {
 
-    const UserData = useSelector((state:any) => state.User)
-    console.log('userState', UserData)
+    const dispatch:any = useDispatch();
+    const UserSelector = useSelector((state:any) => state.User)
+    console.log('userState', UserSelector)
 
-    const LoginUser = async (UsrDetails:any) => {
-        const UserData = JSON.stringify(UsrDetails)
-        const UserRes = await fetch("http://localhost:3001/login",{
-          method: 'POST',
-          headers: {
-            "Content-Type" : "application/json",
-          },
-          body:UserData
-        })
-        console.log (await UserRes.json())
-      };
-        
-  useEffect( () => {
-      LoginUser({
-        email: "user3@h.com",
-        password: "Pass@123"
-        
-      })
-  },[])
-
-  console.log("Loginuser", LoginUser)
+    useEffect( () => {
+      (LoginUser({
+        email:'user2@h.com',
+        password:'Pass@123',
+      }))
+    }, [])
+      
   return (
     <div className="App">
       <RouterProvider router={router} />
