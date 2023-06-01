@@ -10,28 +10,33 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <MainComponents />,
+    },
+    { 
+      path:'/admin',
+      element: <Home/>,
       children: [
         {
-          path: "/Home",
+          path: "/admin/Home",
           element: <Home/>,
         },
         {
-          path: "/Dashboard",
+          path: "/admin/Dashboard",
           element: <Dasboard />,
         },
         {
-          path: "/Doctor",
+          path: "/admin/Doctor",
           element: <DoctorSection />,
         },
         {
-          path: "/Patient",
+          path: "/admin/Patient",
           element: <Patient />,
         },
-        {
-          path: "/About",
-          element: <Aboutus />,
-        },
+        
       ],
+    },
+    {
+      path: "/About",
+      element: <Aboutus />,
     },
   ]);
   export default router;

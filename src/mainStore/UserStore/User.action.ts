@@ -16,8 +16,12 @@ export const LoginUser = async (UsrDetails: any) => {
 
     if (UserRes) {
       const { userData, status } = await UserRes.json();
-        console.log("userData" , userData)
+       
+        
       if (status === 200) {
+
+        console.log("userData" , userData)
+        
         dispatch(SaveUser({ userData }));
           console.log('after dispatch',userData)
       } else {

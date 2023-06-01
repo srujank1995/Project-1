@@ -10,10 +10,11 @@ const App = () => {
 
     const dispatch:any = useDispatch();
     const UserSelector = useSelector((state:any) => state.User)
-    console.log('userState', UserSelector)
+    console.log('UserSelector', UserSelector)
 
     useEffect( () => {
-      (LoginUser({
+      (
+        LoginUser({
         email:'user2@h.com',
         password:'Pass@123',
       }))
