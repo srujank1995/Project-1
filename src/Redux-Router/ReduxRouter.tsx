@@ -1,42 +1,38 @@
 import { createBrowserRouter } from "react-router-dom";
 import Aboutus from "../Components/Aboutus/Aboutus";
-import Dasboard from "../Components/Dasboard/Dasboard";
 import DoctorSection from "../Components/Doctor/DoctorSection";
 import Home from "../Components/Home/Home";
 import Patient from "../Components/Patient/Patient";
 import MainComponents from "../Main-Component/Main-Components";
+import Login from "../Components/Login/Login";
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainComponents />,
-    },
-    { 
-      path:'/admin',
-      element: <Home/>,
-      children: [
+      element: <MainComponents/>,  
+      children:[
         {
-          path: "/admin/Home",
+          path: "/Home",
           element: <Home/>,
         },
         {
-          path: "/admin/Dashboard",
-          element: <Dasboard />,
+          path: "/Login",
+          element: <Login />,
         },
         {
-          path: "/admin/Doctor",
+          path: "/Doctor",
           element: <DoctorSection />,
         },
         {
-          path: "/admin/Patient",
+          path: "/Patient",
           element: <Patient />,
-        },
+        },     
+        {
+          path: "/About",
+          element: <Aboutus />,
+        }, 
+      ] 
+    },
         
-      ],
-    },
-    {
-      path: "/About",
-      element: <Aboutus />,
-    },
   ]);
   export default router;

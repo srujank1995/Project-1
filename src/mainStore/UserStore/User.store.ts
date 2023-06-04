@@ -7,6 +7,7 @@ const userStore = createSlice({
     },
     reducers:{
             SaveUser: (state, action) =>{
+                console.log("action", action)
                 state.userData = action.payload.userData
             }
     }

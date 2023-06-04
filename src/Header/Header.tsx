@@ -12,7 +12,7 @@ const Header: React.FC = () => {
 
   const tabs: Tab[] = [
     { id: 1, title: "HOME", link: "http://localhost:3000/Home" },
-    { id: 2, title: "LOGIN", link: "http://localhost:3000/Dashboard" },
+    { id: 2, title: "LOGIN", link: "http://localhost:3000/Login" },
     { id: 3, title: "DOCTOR SECTION", link: "http://localhost:3000/Doctor" },
     { id: 4, title: "PATIENT SECTION", link: "http://localhost:3000/Patient" },
     { id: 5, title: "ABOUT US", link: "http://localhost:3000/About" },
