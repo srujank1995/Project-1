@@ -10,13 +10,8 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Form Submited')
-    dispatch(
-      LoginUser({
-        email,
-        password,
-      }))
-    // Validation logic
+    console.log(email, password)
+    // Validation logic //
     const validationErrors: { [key: string]: string } = {};
 
     if (!email) {
@@ -33,7 +28,13 @@ const Login: React.FC = () => {
       setErrors(validationErrors);
     } else {
       // Submit form logic
-     
+      alert("Form Submitted Successfully");
+      dispatch(
+        LoginUser({
+          email,
+          password,
+        })
+      );
     }
   };
 
@@ -65,10 +66,14 @@ const Login: React.FC = () => {
                 type="email"
                 autoComplete="email"
                 required
-                onChange={(e) => {setEmail(e.target.value)}}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              )}
             </div>
           </div>
 
@@ -82,7 +87,7 @@ const Login: React.FC = () => {
               </label>
               <div className="text-sm">
                 <a
-                  href="#"
+                  href="/home"
                   className="font-semibold text-red-600 hover:text-red-500"
                 >
                   Forgot password?
@@ -94,22 +99,27 @@ const Login: React.FC = () => {
                 id="password"
                 name="password"
                 type="password"
-                onChange={(e) => {setPassword(e.target.value)}}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 autoComplete="current-password"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+              )}
             </div>
           </div>
 
           <div>
             <button
-              type="submit"
+              type="button"
               className="flex w-full justify-center rounded-md
                bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6
                 text-white shadow-sm hover:bg-red-900 focus-visible:outline 
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
+              onClick={() => {handleSubmit(dispatch)}}
             >
               Sign in
             </button>

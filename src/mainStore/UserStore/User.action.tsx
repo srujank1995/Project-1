@@ -21,7 +21,7 @@ export const LoginUser = async (UsrDetails: any) => {
         dispatch(SaveUser({ userData }));
         console.log("userData", userData.userData);
         {
-          userData.type && <Navigate to='/Doctor' replace={true} />;
+          userData.type === 'admin' &&( <Navigate to='/Doctor' replace={true} />);
         }
       } else {
         console.log("Response Error:", msg);
