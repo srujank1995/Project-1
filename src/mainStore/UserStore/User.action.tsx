@@ -1,7 +1,6 @@
-import { Navigate } from "react-router-dom";
 import { SaveUser } from "./User.store";
 
-export const LoginUser = async (UsrDetails: any) => {
+export const LoginUser = async (UsrDetails: any, navigate:any) => {
   return async (dispatch: any) => {
     const UserDataPayload = JSON.stringify(UsrDetails);
     const UserRes: any = await fetch("http://localhost:3001/login", {
@@ -20,9 +19,7 @@ export const LoginUser = async (UsrDetails: any) => {
       if (status === 200) {
         dispatch(SaveUser({ userData }));
         console.log("userData", userData.userData);
-        {
-          userData.type === 'admin' &&( <Navigate to='/Doctor' replace={true} />);
-        }
+        navigate('/Doctor')
       } else {
         console.log("Response Error:", msg);
       }

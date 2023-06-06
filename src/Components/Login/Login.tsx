@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LoginUser } from "../../mainStore/UserStore/User.action";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const dispatch: any = useDispatch();
+  const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(email, password)
+    console.log(email, password);
+    const info = {
+      email,
+      password,
+    }
+    dispatch(
+      LoginUser(navigate, info)
+    );
     // Validation logic //
     const validationErrors: { [key: string]: string } = {};
-
     if (!email) {
       validationErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(email)) {
@@ -23,23 +31,16 @@ const Login: React.FC = () => {
     if (!password) {
       validationErrors.password = "Password is required";
     }
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
       // Submit form logic
       alert("Form Submitted Successfully");
-      dispatch(
-        LoginUser({
-          email,
-          password,
-        })
-      );
     }
   };
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className=" bg-blue-400 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
@@ -114,12 +115,11 @@ const Login: React.FC = () => {
 
           <div>
             <button
-              type="button"
+              type="submit"
               className="flex w-full justify-center rounded-md
                bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6
                 text-white shadow-sm hover:bg-red-900 focus-visible:outline 
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-700"
-              onClick={() => {handleSubmit(dispatch)}}
             >
               Sign in
             </button>
