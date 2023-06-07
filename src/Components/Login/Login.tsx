@@ -1,35 +1,53 @@
 import React, { useState } from "react";
+import { LoginUser } from "../../mainStore/UserStore/User.action";
+import { useDispatch } from "react-redux";
 
+type LoginForm = {
+  onSubmit?:(email:string, password:string) => {}
+}
 
-const Login: React.FC = () => {
+const Login: React.FC<LoginForm> = ({onSubmit}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailErr, setEmailErr] = useState('');
+  const [passErr, setPassErr] = useState('');
+  const dispatch:any = useDispatch();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     emailvalidate(email)
     passwordvalidate(password)
-    console.log(email, password)
+    
+    if(!emailErr && !passErr && onSubmit){
+      onSubmit(email, password)
+    }
+    // if(!emailErr && !passErr){
+    //   onSubmit(email, password);
+    // } 
+    dispatch(LoginUser({
+      email,
+      password,
+    }))
 
   }
 
   const emailvalidate =(value:string) =>{
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!value){
-      setEmail('Email is required')
+      setEmailErr('Email is required')
     }else if(!emailRegex.test(value)){
-      setEmail("Invalid Email")
+      setEmailErr("Invalid Email")
     }else{
-      setEmail('')
+      setEmailErr('')
     }}
   
   const passwordvalidate =(value:string) =>{
     if(!value){
-      setPassword('Password Required')
+      setPassErr('Password Required')
     }else if(value.length < 6){
-      setPassword('Password should be atleast more than 6 letter')
+      setPassErr('Password should be atleast more than 6 letter')
     }else{
-      setPassword('')
+      setPassErr('')
     }
    }
   return (
@@ -65,6 +83,7 @@ const Login: React.FC = () => {
                 onBlur={(e)=>{emailvalidate(e.target.value)}}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {emailErr && <div className="error">{emailErr}</div>}
             </div>
           </div>
 
@@ -97,7 +116,7 @@ const Login: React.FC = () => {
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-             
+             {passErr && <div className="error">{passErr}</div>}
             </div>
           </div>
 
