@@ -1,9 +1,8 @@
 import React from 'react'
 
-function DoctorSection() {
+const DoctorSection = () => {
   return (
     <div>DoctorSection</div>
   )
 }
-
-export default DoctorSection
+export default DoctorSection;
