@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { TabButton } from "../Common-Component/Button";
+import { useSelector } from "react-redux";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 export type Tab = {
   id: number;
@@ -13,11 +15,22 @@ const Header: React.FC = () => {
   const tabs: Tab[] = [
     { id: 1, title: "HOME", link: "http://localhost:3000/Home" },
     { id: 2, title: "LOGIN", link: "http://localhost:3000/Login" },
-    { id: 3, title: "DOCTOR SECTION", link: "http://localhost:3000/Doctor" },
-    { id: 4, title: "PATIENT SECTION", link: "http://localhost:3000/Patient" },
-    { id: 5, title: "ABOUT US", link: "http://localhost:3000/About" },
+    { id: 3, title: "ABOUT US", link: "http://localhost:3000/About" },
   ];
 
+  const admintabs: Tab[] = [
+    { id: 1, title: "PROFILE", link: "/admin/profile" },
+    { id: 2, title: "BOOK APPOINTMENT", link: "/admin/bookappointment" },
+    { id: 3, title: "SET APPOINTMENT", link: "/admin/setappointment" },
+  ];
+  const usertabs: Tab[] = [
+    { id: 1, title: "PROFILE", link: "/user/profile" },
+    { id: 2, title: "BOOK APPOINTMENT", link: "/user/bookappointment" },
+    { id: 3, title: "SET APPOINTMENT", link: "/user/setappointment" },
+  ];
+
+  const {userData} = useSelector((state:any) => state.User)
+  
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
   };
