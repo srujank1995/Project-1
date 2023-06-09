@@ -20,10 +20,7 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
     
     if(!emailErr && !passErr && onSubmit){
       onSubmit(email, password)
-    }
-    // if(!emailErr && !passErr){
-    //   onSubmit(email, password);
-    // } 
+    } 
     dispatch(LoginUser({
       email,
       password,
@@ -83,7 +80,7 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
                 onBlur={(e)=>{emailvalidate(e.target.value)}}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {emailErr && <div className="error">{emailErr}</div>}
+              {emailErr && <div className="text-red-800 text-lg font-bold mt-1">{emailErr}</div>}
             </div>
           </div>
 
@@ -98,7 +95,7 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
               <div className="text-sm">
                 <a
                   href="/home"
-                  className="font-semibold text-red-600 hover:text-red-500"
+                  className="font-bold text-lg text-red-700 hover:text-red-800"
                 >
                   Forgot password?
                 </a>
@@ -116,7 +113,7 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-             {passErr && <div className="error">{passErr}</div>}
+             {passErr && <div className="text-red-800 text-lg font-bold mt-1">{passErr}</div>}
             </div>
           </div>
 

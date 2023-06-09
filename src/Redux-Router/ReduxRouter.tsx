@@ -5,6 +5,12 @@ import Home from "../Components/Home/Home";
 import Patient from "../Components/Patient/Patient";
 import MainComponents from "../Main-Component/Main-Components";
 import Login from "../Components/Login/Login";
+import DocProfile from "../Components/Doctor/Profile/DocProfile";
+import DocBookApointment from "../Components/Doctor/BookAppointment/DocBookApointment";
+import DocSetAppointment from "../Components/Doctor/SetAppointment/DocSetApointment";
+import PatBookAppointment from "../Components/Patient/PatBookApointment/PatBookAppointment";
+import PatSetAppointment from "../Components/Patient/PatSetAppointment/PatSetAppointment";
+import PatProfile from "../Components/Patient/PatProfile/PatProfile";
 
 const router = createBrowserRouter([
     {
@@ -18,14 +24,6 @@ const router = createBrowserRouter([
         {
           path: "/Login",
           element: <Login />,
-        },
-        {
-          path: "/Doctor",
-          element: <DoctorSection />,
-        },
-        {
-          path: "/Patient",
-          element: <Patient />,
         },     
         {
           path: "/About",
@@ -33,6 +31,51 @@ const router = createBrowserRouter([
         }, 
       ] 
     },
+    {   
+        path: '/admin',
+        element: <MainComponents/>,
+        children:[
+        {
+          path:'/admin/Doctor',
+          element:<DoctorSection/>,
+        },
+        {
+          path:'/admin/profile',
+          element:<DocProfile/>,
+        },
+        {
+          path:'/admin/bookappointment',
+          element:<DocBookApointment/>,
+        },
+        {
+          path:'/admin/setapointment',
+          element:<DocSetAppointment/>,
+        },
+        ]
+      },
+      {   
+        path: '/user',
+        element: <MainComponents/>,
+        children:[
+        {
+          path:'/user/patient',
+          element:<Patient/>,
+        },
+        {
+          path:'/user/profile',
+          element:<PatProfile/>,
+        },
+        {
+          path:'/user/bookappointment',
+          element:<PatBookAppointment/>,
+        },
+        {
+          path:'/user/setapointment',
+          element:<PatSetAppointment/>,
+        },
+        ]
+      }
+    
         
   ]);
   export default router;
