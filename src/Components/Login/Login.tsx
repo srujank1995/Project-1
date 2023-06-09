@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LoginUser } from "../../mainStore/UserStore/User.action";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 type LoginForm = {
   onSubmit?:(email:string, password:string) => {}
@@ -12,6 +13,8 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
   const [emailErr, setEmailErr] = useState('');
   const [passErr, setPassErr] = useState('');
   const dispatch:any = useDispatch();
+  const navigate = useNavigate();
+
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -21,10 +24,12 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
     if(!emailErr && !passErr && onSubmit){
       onSubmit(email, password)
     } 
-    dispatch(LoginUser({
+    
+    const userparam={
       email,
       password,
-    }))
+    }
+    dispatch(LoginUser(userparam, navigate))
 
   }
 
@@ -48,7 +53,7 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
     }
    }
   return (
-    <div className=" bg-blue-400 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+  <div className=" bg-blue-400 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           className="mx-auto h-10 w-auto"
@@ -131,6 +136,14 @@ const Login: React.FC<LoginForm> = ({onSubmit}) => {
           </div>
         </form>
       </div>
+      <div className="bg-blue-400 h-screen flex flex-col justify-center items-center">
+      <h1 className="text-4xl font-bold text-white mb-4">Welcome to Medical Care</h1>
+      <p className="text-xl text-white text-center max-w-md">
+        At Medical Care, we are dedicated to providing exceptional healthcare services to our
+        patients. Our team of experienced doctors and nurses is committed to delivering
+        high-quality medical care with compassion and professionalism.
+      </p>
+    </div>
     </div>
   );
 };

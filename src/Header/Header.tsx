@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TabButton } from "../Common-Component/Button";
 import { useSelector } from "react-redux";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 export type Tab = {
   id: number;
@@ -12,25 +11,28 @@ export type Tab = {
 const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
 
-  const tabs: Tab[] = [
-    { id: 1, title: "HOME", link: "http://localhost:3000/Home" },
-    { id: 2, title: "LOGIN", link: "http://localhost:3000/Login" },
-    { id: 3, title: "ABOUT US", link: "http://localhost:3000/About" },
-  ];
-
   const admintabs: Tab[] = [
-    { id: 1, title: "PROFILE", link: "/admin/profile" },
-    { id: 2, title: "BOOK APPOINTMENT", link: "/admin/bookappointment" },
-    { id: 3, title: "SET APPOINTMENT", link: "/admin/setappointment" },
+    { id: 1, title: "DASHBOARD", link: "/admin/" },
+    { id: 2, title: "DOCTOR SECTION", link: "/admin/Doctor" },
+    { id: 3, title: "PATIENT SECTION", link: "/admin/Patient" },
   ];
   const usertabs: Tab[] = [
     { id: 1, title: "PROFILE", link: "/user/profile" },
-    { id: 2, title: "BOOK APPOINTMENT", link: "/user/bookappointment" },
-    { id: 3, title: "SET APPOINTMENT", link: "/user/setappointment" },
+    { id: 2, title: "MY APPOINTMENT", link: "/user/bookappointment" },
+    { id: 3, title: "BOOK APPOINTMENT", link: "/user/setappointment" },
   ];
-
-  const {userData} = useSelector((state:any) => state.User)
-  
+  const Doctabs: Tab[] = [
+    { id: 1, title: "PROFILE", link: "/Doctor" },
+    { id: 2, title: "MY APPOINTMENT", link: "/Doctor/bookappointment" },
+    { id: 3, title: "BOOk APPOINTMENT", link: "/Doctor/setappointment" },
+  ];
+  const { userData } = useSelector((state: any) => state.User);
+  const MainTab =
+    userData.type === "user"
+      ? usertabs
+      : userData.type === "admin"
+      ? admintabs
+      : Doctabs;
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
   };
@@ -50,7 +52,7 @@ const Header: React.FC = () => {
           </a>
         </div>
         <div className="flex space-x-4">
-          {tabs.map((tab) => (
+          {MainTab.map((tab) => (
             <TabButton
               key={tab.id}
               link={tab.link}
