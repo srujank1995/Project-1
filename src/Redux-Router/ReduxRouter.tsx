@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       element: <MainComponents/>,
       children:[
         {
-          path:'/user',
+          path:'/user/profile',
           element:<PatProfile/>,
         },
         {
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       element: <MainComponents/>,
       children:[
         {
-          path:'/Doctor',
+          path:'/Doctor/profile',
           element:<DocProfile/>,
         },
         {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { TabButton } from "../Common-Component/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { SaveUser } from "../mainStore/UserStore/User.store";
 
 export type Tab = {
   id: number;
@@ -10,7 +12,13 @@ export type Tab = {
 
 const Header: React.FC = () => {
   const [activeTab, setActiveTab] = useState(1);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const Logout =() =>{
+    dispatch(SaveUser({}))
+    navigate('/')
+  }
   const admintabs: Tab[] = [
     { id: 1, title: "DASHBOARD", link: "/admin/" },
     { id: 2, title: "DOCTOR SECTION", link: "/admin/Doctor" },
@@ -52,17 +60,20 @@ const Header: React.FC = () => {
           </a>
         </div>
         <div className="flex space-x-4">
-          {MainTab.map((tab) => (
-            <TabButton
-              key={tab.id}
-              link={tab.link}
-              tab={tab}
-              isActive={tab.id === activeTab}
-              onClick={handleTabClick}
-            />
-          ))}
+         
+            {MainTab.map((tab) => (
+              <TabButton
+                key={tab.id}
+                link={tab.link}
+                tab={tab}
+                isActive={tab.id === activeTab}
+                onClick={handleTabClick}
+              />
+            ))}
+          
         </div>
       </nav>
+      <button onClick={Logout}>LOGOUT</button>
     </header>
   );
 };
